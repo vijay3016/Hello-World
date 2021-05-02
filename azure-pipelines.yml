@@ -11,9 +11,16 @@ pool:
 
 steps:
 - script: echo Hello, world!
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'poosub(1)(0f8eace0-2836-455e-bdaa-aaceead97ced)'
+    subscriptionId: '0f8eace0-2836-455e-bdaa-aaceead97ced'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'poorg'
+    location: 'Central India'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://dev.azure.com/vijay3016/_git/poo?path=%2Ftemplate.json&version=GBmain'
+    csmParametersFileLink: 'https://dev.azure.com/vijay3016/_git/poo?path=%2Fparameters.json&version=GBmain'
+    deploymentMode: 'Incremental'
   displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
